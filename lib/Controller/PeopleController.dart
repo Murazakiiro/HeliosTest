@@ -1,45 +1,40 @@
 import 'dart:convert';
 
-import 'package:HeliosTest/object/people.dart';
+import 'package:HeliosTest/Model/People.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class Services {
+class PeopleController {
 
-  static List<People> lesGens;
+  List allPeople = [];
+
+  Future _getPeopleDart() async {
 
 
-  Services() {
-    _charge();
-  }
+    this.allPeople.clear();
 
-  Future<List<People>> _getPeopleDart(int nbPersone) async{
-    Map result;
-    Map data;
-    http.Response json;
-    List<People> lesGens = new List();
+    for (var i=0;i<20;i++) {
 
-    for (var i = 0 ;i<nbPersone;i++){
-      json = await http.get("https://randomuser.me/api/");
-      result = jsonDecode(json.body);
-      data = result["results"][0];
+      var json = await http.get("https://randomuser.me/api/");
+      var data = jsonDecode(json.body);
+      var results = data["results"][0];
 
-      lesGens.add(new People(
-          age: data["registered"]["age"],
-          email: data["email"],
-          title: data["name"]["title"],
-          nom: data["name"]["last"],
-          prenom: data["name"]["first"],
-          phone: data["phone"]
+      this.allPeople.add(new People(
+        title: results["name"]["title"],
+        nom: results["name"]["first"],
+        prenom: results["name"]["last"],
+        photo: results["picture"]["medium"]
       ));
     }
-    
-    return lesGens;
 
+    print(this.allPeople.length);
   }
 
-  _charge() async {
-    lesGens = await _getPeopleDart(20);
+  Future reloadData() async {
+    //await new Future.delayed(new Duration(seconds: 2));
+    await this._getPeopleDart();
   }
+
+
   
 }

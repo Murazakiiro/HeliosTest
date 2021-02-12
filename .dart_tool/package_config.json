@@ -74,6 +74,12 @@
       "languageVersion": "2.3"
     },
     {
+      "name": "lipsum",
+      "rootUri": "file:///F:/Ressource/flutter/.pub-cache/hosted/pub.dartlang.org/lipsum-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.24"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///F:/Ressource/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10-nullsafety.1",
       "packageUri": "lib/",
@@ -158,7 +164,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-02-11T19:59:01.332821Z",
+  "generated": "2021-02-12T15:14:19.952122Z",
   "generator": "pub",
   "generatorVersion": "2.10.5"
 }
