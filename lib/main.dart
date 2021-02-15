@@ -1,10 +1,13 @@
 import 'package:HeliosTest/Controller/PeopleController.dart';
-import 'package:HeliosTest/Model/People.dart';
-import 'package:HeliosTest/details.dart';
+
+import 'Pages/Details.dart';
+import 'package:HeliosTest/Pages/Home.dart';
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 
 void main() {
+  PeopleController.reloadData();
   runApp(MyApp());
 }
 
@@ -19,103 +22,37 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'HeliosTest',primaryColor: Colors.blue),
+      home: ChargeScreen(),
       routes: {
-        'home': (context) => MyHomePage(title: "HeliosTest",primaryColor: Colors.purple,),
+        'home': (context) => MyHomePage(title: "HeliosTest",primaryColor: Colors.blue,),
         'details': (context) => MyDetailsPage(title: "Details",primaryColor: Colors.purple)
       }
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title,this.primaryColor}) : super(key: key);
-
-
-  final String title;
-  final Color primaryColor;
+class ChargeScreen extends StatefulWidget {
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ChargeScreenState createState() => _ChargeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-
-  PeopleController controller = new PeopleController();
-  bool isLoading = true;
-  List<People> peoples = [];
-
-  @override
-  void initState() {
-    _reload();
-    super.initState();
-  }
-
-  Future _reload() async {
-
-    //await new Future.delayed(new Duration(seconds: 2));
-    await controller.reloadData();
-
-    setState(() {
-      peoples.addAll(controller.allPeople.cast());
-      isLoading = false;
-    });
-  }
+class _ChargeScreenState extends State<ChargeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-      appBar: AppBar(
-        backgroundColor: widget.primaryColor,
-        title: Text(widget.title),
+    return new SplashScreen(
+      seconds: 14,
+      navigateAfterSeconds: new MyHomePage(title: "HeliosTest",primaryColor: Colors.green,),
+      title: new Text(
+        'Bienvenue sur helios test',
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0,color: Colors.white),
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: NotificationListener<ScrollEndNotification>(
-              child: ListView.builder(
-                itemCount: peoples.length,
-                itemBuilder: (context,index){
-                  return new Card(
-                    child: ListTile(
-                      title: Text(peoples[index].toString()),
-                      onTap: (){
-                        People p = peoples[index];
-                        Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyDetailsPage(
-                          title: p.toString(),
-                          primaryColor: Colors.purple,
-                          people: p,
-                        )));
-                      },
-                    ),
-                  );
-                },
-              ),
-              onNotification: (notification) {
-                var value = notification.metrics;
-
-                if (value.pixels==value.maxScrollExtent){
-                  _reload();
-                  setState(() {
-                    isLoading = true;
-                  });
-                }
-                return true;
-              },
-            ),
-          ),
-
-          Container(
-            height: isLoading ? 50.0 : 0,
-            color: Colors.transparent,
-            child: Center(
-              child: new CircularProgressIndicator(),
-            ),
-          ),
-        ],
-      )
+      image: new Image.network(
+          'https://adn-co.news/uploads/images/2020/06/26/daa2d0d6485c5d49658f24b771f2e0db.jpeg',
+      ),
+      backgroundColor: Colors.green,
+      loaderColor: Colors.white,
     );
   }
 }

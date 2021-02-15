@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c145109-0648-4581-8282-04b8d9fe3971" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/Model/People.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/details.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/getPeopleAPI_test.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Controller/PeopleController.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Controller/PeopleController.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/MyNextPage.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/MyPreviousPage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Model/People.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Model/People.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Pages/Details.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/object/people.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
@@ -33,6 +28,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1oLi7YzxW5eoULlxUnvhhAzKkIB" />
   <component name="ProjectView">
@@ -59,6 +62,20 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Mobile\Flutter\HeliosTest\lib" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Mobile\Flutter\HeliosTest\lib\Pages\" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Flutter.main.dart">
+    <configuration name="tests in getPeopleAPI_test.dart" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testFile" value="$PROJECT_DIR$/test/getPeopleAPI_test.dart" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flutter Test.tests in getPeopleAPI_test.dart" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
