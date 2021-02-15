@@ -1,8 +1,8 @@
 
 import 'dart:ui';
 
-import 'package:HeliosTest/Controller/PeopleController.dart';
-import 'package:HeliosTest/Model/People.dart';
+import '../Controller/PeopleController.dart';
+import '../Model/People.dart';
 import 'package:flutter/material.dart';
 
 
@@ -20,7 +20,6 @@ class MyDetailsPage extends StatefulWidget {
 
 class _MyDetailsPageState extends State<MyDetailsPage> {
 
-  PeopleController controller = new PeopleController();
   bool isLoading = true;
   List<People> peoples = [];
 
@@ -33,10 +32,10 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
   Future _reload() async {
 
     //await new Future.delayed(new Duration(seconds: 2));
-    await controller.reloadData();
+    await PeopleController.reloadData();
 
     setState(() {
-      peoples.addAll(controller.allPeople.cast());
+      peoples.addAll(PeopleController.allPeople.cast());
       isLoading = false;
     });
   }
@@ -54,15 +53,22 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
           children: <Widget>[
             Expanded(
                 child: Row(
+                  
                   children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(widget.people.photo),
-                      radius: 50,
-
+                    Container(
+                      padding: EdgeInsets.only(left: 16),
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(widget.people.photo),
+                        radius: 50,
+                      ),
                     ),
-                    Text(widget.people.toString(),
-                      style: TextStyle(
-                          fontSize: 30
+                    Container(
+                      padding: EdgeInsets.all(16),
+                      child: Text(widget.people.toString(),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 20
+                        ),
                       ),
                     )
                   ],

@@ -1,38 +1,36 @@
 import 'dart:convert';
-
-import 'package:HeliosTest/Model/People.dart';
-import 'package:flutter/material.dart';
+import '../Model/People.dart';
+import 'package:lipsum/lipsum.dart' as lipsum;
 import 'package:http/http.dart' as http;
 
 class PeopleController {
 
-  List allPeople = [];
+  static List allPeople = [];
 
-  Future _getPeopleDart() async {
+  static Future _getPeopleAPI() async {
 
 
-    this.allPeople.clear();
+    //allPeople.clear();
 
-    for (var i=0;i<20;i++) {
+    for (int i=0;i<20;i++) {
 
-      var json = await http.get("https://randomuser.me/api/");
-      var data = jsonDecode(json.body);
-      var results = data["results"][0];
+      http.Response json = await http.get("https://randomuser.me/api/");
+      Map data = jsonDecode(json.body);
+      Map results = data["results"][0];
 
-      this.allPeople.add(new People(
+      allPeople.add(new People(
         title: results["name"]["title"],
-        nom: results["name"]["first"],
         prenom: results["name"]["last"],
-        photo: results["picture"]["medium"]
+        nom: results["name"]["first"],
+        photo: results["picture"]["medium"],
+        details: lipsum.createText()
       ));
     }
-
-    print(this.allPeople.length);
   }
 
-  Future reloadData() async {
+  static Future reloadData() async {
     //await new Future.delayed(new Duration(seconds: 2));
-    await this._getPeopleDart();
+    await _getPeopleAPI();
   }
 
 
