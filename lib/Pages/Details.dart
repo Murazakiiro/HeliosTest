@@ -20,26 +20,6 @@ class MyDetailsPage extends StatefulWidget {
 
 class _MyDetailsPageState extends State<MyDetailsPage> {
 
-  bool isLoading = true;
-  List<People> peoples = [];
-
-  @override
-  void initState() {
-    _reload();
-    super.initState();
-  }
-
-  Future _reload() async {
-
-    //await new Future.delayed(new Duration(seconds: 2));
-    await PeopleController.reloadData();
-
-    setState(() {
-      peoples.addAll(PeopleController.allPeople.cast());
-      isLoading = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
