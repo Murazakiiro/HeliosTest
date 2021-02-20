@@ -19,14 +19,6 @@ class People {
 
   @override
   String toString() {
-    StringBuffer sb = new StringBuffer();
-
-    sb.write(this.title);
-    sb.write(" ");
-    sb.write(this.nom);
-    sb.write(" ");
-    sb.write(this.prenom);
-
-    return sb.toString();
+    return "${this.title} ${this.nom} ${this.prenom}";
   }
 }
