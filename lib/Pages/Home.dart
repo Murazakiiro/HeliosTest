@@ -20,12 +20,10 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isLoading;
   List<People> peoples;
 
-  @override
-  void initState() {
-    peoples = PeopleController.allPeople.cast();
-    isLoading =false;
-    super.initState();
-  }
+  ScrollController _scrollController = new ScrollController(
+      initialScrollOffset: 0.0,
+      keepScrollOffset: true
+  );
 
   Future _reload() async {
 
@@ -39,6 +37,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+    peoples = PeopleController.allPeople.cast();
+    isLoading =false;
+    _scrollController.addListener(() {
+
+      if(_scrollController.offset == _scrollController.position.maxScrollExtent){
+        setState(() {
+          isLoading = true;
+        });
+        _reload();
+      }
+
+    });
+    super.initState();
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
 
@@ -49,36 +66,25 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(
           children: <Widget>[
             Expanded(
-              child: NotificationListener<ScrollEndNotification>(
-                child: ListView.builder(
-                  itemCount: peoples.length,
-                  itemBuilder: (context,index){
-                    return new Card(
-                      child: ListTile(
-                        title: Text(peoples[index].toString()+" ${index}"),
-                        onTap: (){
-                          People p = peoples[index];
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => MyDetailsPage(
-                                title: p.toString(),
-                                primaryColor: Colors.green,
-                                people: p,
-                              )));
-                        },
-                      ),
-                    );
-                  },
-                ),
-                onNotification: (notification) {
-                  ScrollMetrics value = notification.metrics;
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: peoples.length,
+                itemBuilder: (context,index){
 
-                  if (value.pixels==value.maxScrollExtent){
-                    setState(() {
-                      isLoading = true;
-                    });
-                    _reload();
-                  }
-                  return true;
+                  return new Card(
+                    child: ListTile(
+                      title: Text(peoples[index].toString()+" ${index+1}"),
+                      onTap: (){
+                        People p = peoples[index];
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => MyDetailsPage(
+                              title: p.toString(),
+                              primaryColor: Colors.green,
+                              people: p,
+                            )));
+                      },
+                    ),
+                  );
                 },
               ),
             ),

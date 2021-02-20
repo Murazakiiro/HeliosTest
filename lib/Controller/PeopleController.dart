@@ -12,20 +12,20 @@ class PeopleController {
 
     //allPeople.clear();
 
-    for (int i=0;i<20;i++) {
+    http.Response json = await http.get("https://randomuser.me/api/?results=20");
+    Map data = jsonDecode(json.body);
+    List results = data["results"];
 
-      http.Response json = await http.get("https://randomuser.me/api/");
-      Map data = jsonDecode(json.body);
-      Map results = data["results"][0];
 
+    results.forEach((result) {
       allPeople.add(new People(
-        title: results["name"]["title"],
-        prenom: results["name"]["last"],
-        nom: results["name"]["first"],
-        photo: results["picture"]["medium"],
-        details: lipsum.createText()
+          title: result["name"]["title"],
+          prenom: result["name"]["last"],
+          nom: result["name"]["first"],
+          photo: result["picture"]["medium"],
+          details: lipsum.createText()
       ));
-    }
+    });
   }
 
   static Future reloadData() async {
