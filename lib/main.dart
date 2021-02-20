@@ -42,7 +42,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
   @override
   Widget build(BuildContext context) {
     return new SplashScreen(
-      seconds: 14,
+      seconds: 2,
       navigateAfterSeconds: new MyHomePage(title: "HeliosTest",primaryColor: Colors.green,),
       title: new Text(
         'Bienvenue sur helios test',
